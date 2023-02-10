@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="row d-flex justify-content-center">
+    <div class="col-12 col-sm-12 col-md-9 col-lg-8 col-xl-8">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                Details Movie
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-sd-12 col-md-4 col-lg-4 col-xl-4">
+                        {% if pelicula.imagen %}
+                            <img src="{{ pelicula.imagen.url }}" class="img-fluid rounded-3 shadow  bg-body-tertiary rounded" />
+                        {% else %}
+                            <img src="https://static5.depositphotos.com/1007959/520/i/600/depositphotos_5203460-stock-photo-three-signs-in-fists-saying.jpg" class="img-fluid rounded-3 shadow  bg-body-tertiary rounded" />
+                        {% endif %}
+
+                    </div>
+                    <div class="col-12 col-sd-12 col-md-8 col-lg-8 col-xl-8">
+                        <h5 class="card-title">{{ pelicula.reseña }}</h5>
+                        <p class="card-text"><strong>Putuación:</strong> {{ pelicula.puntuacion }}</p>
+                        <p class="card-text"><strong>Director:</strong> {{ pelicula.director }}</p>
+                        <p class="card-text"><strong>Detalles:</strong> {{ pelicula.descripcion }}</p>
+                        <p class="card-text"><strong>Otros detalles:</strong> {{ pelicula.contenido }}</p>
+                        <p class="card-text"><strong>Sipnosis:</strong> {{ pelicula.sipnosis }}</p>
+                        <p class="card-text"><strong>Genero:</strong> {{ pelicula.genero.nombre }}</p>
+                        <a href="{% url 'core:inicio' %}" class="btn btn-success ">Volver</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

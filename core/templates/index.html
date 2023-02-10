@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h1 style="text-align: center;">Clasicos en NetFlix - Reseña de Movies</h1>
+
+<div class="row mb-3">
+    <form method="get" class="d-flex justify-content-center" action="{% url 'core:search' %}">
+          <div class="col-3">
+            <input type="text" class="form-control" placeholder="Search" name="q" />
+        </div>
+    </form>
+</div>
+
+<div class="row d-flex justify-content-center">
+  {% for item in peliculas %}
+
+    <div class="col-12 col-sm-12 col-md-4 col-lg-2 col-xl-2 mr-3 mt-3">
+        <div class="card">
+                {% if item.imagen %}
+                    <img  class="card-img-top img-fluid" style="height:80%; min-height: 15%; max-height: 90%;"  src="{{ item.imagen.url }}" />
+                {% else %}
+                    <img  class="card-img-top img-fluid" style="height:80%; min-height: 15%; max-height: 90%;"  src="https://static5.depositphotos.com/1007959/520/i/600/depositphotos_5203460-stock-photo-three-signs-in-fists-saying.jpg" />
+                {% endif %}
+            <div class="card-body">
+            <h5 class="card-title">{{item.reseña}}</h5>
+            <p class="card-text text-truncate">{{item.descripcion}}</p>
+            <a href="{% url 'core:detail' item.id %}" class="btn btn-primary m-2">Go details</a>
+                <a href="{% url 'core:update' item.id  %}" class="btn btn-success  m-2">Actualizar</a>
+               <a href="{% url 'core:delete' item.id %}" class="btn btn-danger m-2">Eliminar</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
